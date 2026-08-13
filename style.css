@@ -1,0 +1,22 @@
+body {
+    font-family: Gill Sans, sans-serif;
+    text-align: center;
+}
+
+button {
+    margin: 5px;
+}
+
+#contenedorPrincipal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mostrarDatosUsuario {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 300px;
+}
