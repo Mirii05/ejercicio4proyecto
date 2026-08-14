@@ -28,7 +28,6 @@ async function obtenerID(idIngresado) {
         }
     }catch (error){
         console.log("Ocurrió un error: ", error);
-        console.log("Hola Goc, soy Goc");
     }
 }
 function mostrarInformacion(datos){
