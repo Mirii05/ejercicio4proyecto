@@ -5,25 +5,23 @@ const mostrarDatosUsuario = document.getElementById("mostrarDatosUsuario");
 const mensajeError = document.getElementById("mensajeError");
 const inputID = document.getElementById("ingresaID");
 //----------------funciones----------------
-function ingresaBuscaID(){
+async function ingresaBuscaID(){
     console.log("se hizo clic en buscar");
     const idIngresado = inputID.value;
     if (idIngresado === ""){
         mensajeError.textContent = "Por favor ingresa un ID válido";
-        return;
     }
     console.log("ID ingresado:", idIngresado);
-    return idIngresado;
+    const datos = await obtenerID(idIngresado);//tengo duda
+    mostrarInformacion(datos);//tengo duda
 }
-
-
 async function obtenerID(idIngresado) {
     try{
         const informacion = await fetch("https://jsonplaceholder.typicode.com/users/" + idIngresado);
         if(informacion.ok){
             console.log("La petición fue exitosa");
-
             const datos = await informacion.json();
+            return datos;
         }else{
             console.log("La petición falló");
             console.log("Estatus:", informacion.status);
@@ -31,7 +29,6 @@ async function obtenerID(idIngresado) {
     }catch (error){
         console.log("Ocurrió un error: ", error);
     }
-    return datos;
 }
 function mostrarInformacion(datos){
     mostrarDatosUsuario.innerHTML = `
@@ -47,4 +44,3 @@ function mostrarInformacion(datos){
 botonBuscarID.addEventListener("click", ingresaBuscaID);
 obtenerID(idIngresado);
 mostrarInformacion(datos);
-
