@@ -34,13 +34,16 @@ async function obtenerID(idIngresado) { //ejecuta obtenerID
     }
 }
 function mostrarInformacion(datos){
-    const {name, 
+    const {
+           id,
+           name, 
            username,
            email,
            address: { street, city, zipcode }
         } = datos;
     
     mostrarDatosUsuario.innerHTML = `
+    <p>ID: ${id}</p>
     <p>Nombre: ${name}</p>
     <p>Usuario: ${username}</p>
     <p>Email: ${email}</p>

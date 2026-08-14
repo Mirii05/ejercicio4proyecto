@@ -1,21 +1,40 @@
 body {
-    background-color: #D3DD40;
+    background-color: #FF9100;
     font-family: Gill Sans, sans-serif;
     text-align: center;
 }
 
 button {
+    background: #FFF4BF;
     margin: 5px;
     cursor: pointer;
+    font-family: Lucida Sans Unicode, Arial, sans-serif;
+
+}
+
+#ingresaID{
+    width: 35%;
+    padding: 6px;
+    margin: 10px;
+    box-sizing: border-box;
 }
 
 #contenedorPrincipal {
+    background: #00B7CD;
+    font-family: Verdana, sans-serif;
+    width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #mostrarDatosUsuario {
+    background: #FFF1D1;
+    font-family: ;
     margin-top: 20px;
     padding: 20px;
     border: 1px solid #ccc;
