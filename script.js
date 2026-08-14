@@ -42,5 +42,4 @@ function mostrarInformacion(datos){
 }
 //----------------eventos-----------------
 botonBuscarID.addEventListener("click", ingresaBuscaID);
-obtenerID(idIngresado);
-mostrarInformacion(datos);
+
