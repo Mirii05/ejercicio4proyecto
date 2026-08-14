@@ -9,8 +9,9 @@ async function ingresaBuscaID(){//obtinene el ID y coordina el proceso
     console.log("se hizo clic en buscar");
     const idIngresadoString = inputID.value;
     const idIngresado = Number(idIngresadoString);
-    if (idIngresado === " " || idIngresado < 1 || idIngresado > 10 || idIngresado%1 !== 0 ){
-        mensajeError.textContent = "Por favor ingresa un ID válido";
+    if (idIngresado < 1 || idIngresado > 10 || idIngresado%1 !== 0 ){
+        mensajeError.textContent = "Por favor ingresa un ID válido (números del 1 al 10)";
+        return;
     }
     console.log("ID ingresado:", idIngresado);
     const datos = await obtenerID(idIngresado);//ejecuta obtenerID, espera su resultado y lo guarda en datos
@@ -51,7 +52,7 @@ function mostrarInformacion(datos){
 
 function limpiarDatos(){
     inputID.value = "";
-    mostrarDatosUsuario.innerHTML = "";
+    mostrarDatosUsuario.innerHTML = "Información del usuario";
     mensajeError.textContent = "";
 }
 //----------------eventos-----------------
