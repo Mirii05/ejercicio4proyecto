@@ -5,17 +5,19 @@ const mostrarDatosUsuario = document.getElementById("mostrarDatosUsuario");
 const mensajeError = document.getElementById("mensajeError");
 const inputID = document.getElementById("ingresaID");
 //----------------funciones----------------
-async function ingresaBuscaID(){
+async function ingresaBuscaID(){//obtinene el ID y coordina el proceso
     console.log("se hizo clic en buscar");
-    const idIngresado = inputID.value;
-    if (idIngresado === ""){
+    const idIngresadoString = inputID.value;
+    const idIngresado = Number(idIngresadoString);
+    if (idIngresado === " " || idIngresado < 1 || idIngresado > 10 || idIngresado%1 !== 0 ){
         mensajeError.textContent = "Por favor ingresa un ID válido";
     }
     console.log("ID ingresado:", idIngresado);
-    const datos = await obtenerID(idIngresado);//tengo duda
-    mostrarInformacion(datos);//tengo duda
+    const datos = await obtenerID(idIngresado);//ejecuta obtenerID, espera su resultado y lo guarda en datos
+    mostrarInformacion(datos);
 }
-async function obtenerID(idIngresado) {
+
+async function obtenerID(idIngresado) { //ejecuta obtenerID
     try{
         const informacion = await fetch("https://jsonplaceholder.typicode.com/users/" + idIngresado);
         if(informacion.ok){
@@ -31,15 +33,28 @@ async function obtenerID(idIngresado) {
     }
 }
 function mostrarInformacion(datos){
+    const {name, 
+           username,
+           email,
+           address: { street, city, zipcode }
+        } = datos;
+    
     mostrarDatosUsuario.innerHTML = `
-    <p>Nombre: ${datos.name}</p>
-    <p>Usuario: ${datos.username}</p>
-    <p>Email: ${datos.email}</p>
+    <p>Nombre: ${name}</p>
+    <p>Usuario: ${username}</p>
+    <p>Email: ${email}</p>
     <p>Dirección</p>
-    <p>Calle: ${datos.address.street}</p>
-    <p>Ciudad: ${datos.address.city}</p>
-    <p>Código postal: ${datos.address.zipcode}</p>`;
+    <p>Calle: ${street}</p>
+    <p>Ciudad: ${city}</p>
+    <p>Código postal: ${zipcode}</p>`;
+}
+
+function limpiarDatos(){
+    inputID.value = "";
+    mostrarDatosUsuario.innerHTML = "";
+    mensajeError.textContent = "";
 }
 //----------------eventos-----------------
 botonBuscarID.addEventListener("click", ingresaBuscaID);
+botonLimpiar.addEventListener("click", limpiarDatos);
 
